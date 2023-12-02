@@ -440,16 +440,7 @@ pub fn deconstruct_dex_from_checkpoint(dex_map: &Map<String, Value>) -> Dex {
 
     let fee = dex_map
         .get("fee")
-       // .map(|fee| fee.as_u64().expect("Could not convert fee to u64"));
-        .map(|fee| {
-            match fee.as_u64() {
-                Some(fee_value) => fee_value,
-                None => {  println!("Non of fee")
-                // Handle error, such as logging and continue with a default value or early return
-                }
-            }
-        });
-        
+        .map(|fee| fee.as_u64().expect("Could not convert fee to u64")); 
 
     Dex::new(factory_address, dex_variant, block_number, fee)
 }
